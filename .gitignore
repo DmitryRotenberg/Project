@@ -1,0 +1,6 @@
+# Ignored files
+*.iml
+.idea
+*.class
+.git
+.svn
