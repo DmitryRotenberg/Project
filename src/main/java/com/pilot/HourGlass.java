@@ -10,22 +10,23 @@ package com.pilot;
 public class HourGlass {
     public static void main(String[] args) {
 
-        int[][] array = new int[20][20];
+        int[][] array = new int[10][10];
 
         int c = array.length / 2;
         int r = array[c].length / 2;
 
-        for(int i = 0; i < c; i++) {
+        for(int i = 0; i < array.length; i++) {
             for(int j = 0; j < r; j++) {
 
-                if(j + i < r) {
-                    array[i][j + i] = 1;
-                    array[i][array[c].length - j - i - 1] = 1;
-                    array[array.length - i - 1][j + i] = 1;
-                    array[array[c].length - i - 1][array[c].length - j - i - 1] = 1;
+                if(j >= i) {
+                    array[i][j] = 1;
+                    array[i][array[i].length - j - 1] = 1;
+
+                    array[array.length - i - 1][j] = 1;
+                    array[array.length - i - 1][array[c].length - j - 1] = 1;
                 }
-                array[i + j][r] = 1;
-                array[array.length - i - j - 1][r] = 1;
+                if((array.length % 2 != 0) || (array[c].length % 2 != 0))
+                    array[i][r] = 1;
             }
         }
         printHourGlass(array);
