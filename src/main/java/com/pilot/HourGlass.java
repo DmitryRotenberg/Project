@@ -10,52 +10,34 @@ package com.pilot;
 public class HourGlass {
     public static void main(String[] args) {
 
-        int[][] array = new int[10][10];
+        int[][] array = new int[20][20];
 
         int c = array.length / 2;
         int r = array[c].length / 2;
 
-        int step = 0;
+        for(int i = 0; i < c; i++) {
+            for(int j = 0; j < r; j++) {
 
-        for(int i = array.length / 2; i < array.length; i++) {
-
-            if (r + step < array[c].length)  {
-
-                array[i][r + step] = 1;
-                array[i][r - step] = 1;
-                array[c - step][r + step] = 1;
-                array[c - step][r - step] = 1;
-                array[i][r] = 1;
-
-                if(array[0].length % 2 != 0)   {
-                    array[i - c][r] = 1;
-                    array[0][step] = 1;
-                    array[0][array[0].length - step - 1] = 1;
-
-                } else {
-                    array[i - c + 1][r] = 1;
-                    array[1][step] = 1;
-                    array[1][array[0].length - step - 1] = 1;
+                if(j + i < r) {
+                    array[i][j + i] = 1;
+                    array[i][array[c].length - j - i - 1] = 1;
+                    array[array.length - i - 1][j + i] = 1;
+                    array[array[c].length - i - 1][array[c].length - j - i - 1] = 1;
                 }
-
-
-                array[array.length - 1][step] = 1;
-                array[array.length - 1][array[0].length - step - 1] = 1;
-
-                step++;
+                array[i + j][r] = 1;
+                array[array.length - i - j - 1][r] = 1;
             }
         }
-
         printHourGlass(array);
     }
 
     public static void printHourGlass(int[][] array) {
-        for(int i = 0; i < array.length; i++) {
-            for(int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j]);
-            }
-            System.out.println();
+      for(int i[] : array) {
+        for(int j : i) {
+               System.out.print(j + " ");
         }
+        System.out.println();
+      }
+
     }
 }
-
