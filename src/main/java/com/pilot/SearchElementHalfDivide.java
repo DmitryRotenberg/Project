@@ -10,14 +10,19 @@ package com.pilot;
 
 public class SearchElementHalfDivide {
 
-    private static int count = 1;
-
     public static int find(int array[], int value) {
-
+        int count = 0;
+        int lengthFull = array.length;
         int lengthHalf = array.length / 2;
 
+        while(lengthFull > 1) {
+            lengthFull /= lengthFull;
+            count++;
+        }
+            
 
-        while(count < 10) {
+
+        while(count >= 1) {
 
             if(array[lengthHalf] == value ) {
                 return lengthHalf;
@@ -27,7 +32,10 @@ public class SearchElementHalfDivide {
 
             } else if((array[lengthHalf + 1] == value) && (lengthHalf <= array.length)) {
                 return lengthHalf + 1;
+            } else if(value > array[array.length - 1] || value < array[0]) {
+                return -1;
             }
+
 
             if(value < array[lengthHalf])
                 lengthHalf -= lengthHalf / 2;
@@ -47,11 +55,24 @@ public class SearchElementHalfDivide {
     }
 
     public static void main(String[] args) {
-        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+        int[] search = { 0, 3, 10, 13, 16, 45, 100, 6, 8 };
+
+        for (int i : search) {
+            int index = find(array, i);
+            System.out.println(String.format(
+                    "Индекс элемента %d в массиве: %d", i, index));
+        }
 
 
-            System.out.println("индекс элемента в массиве: " + find(array, 17));
-            System.out.println("количество делений: " + count);
+            //System.out.println("индекс элемента в массиве: " + find(array, 17));
+
+
+
+
+
+
+
 
     }
 }
